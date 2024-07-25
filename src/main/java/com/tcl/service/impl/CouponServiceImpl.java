@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Future;
 
 
 @Service
@@ -44,9 +45,12 @@ public class CouponServiceImpl implements CouponService
                 threadPool.execute(() -> {
                     try
                     {
+//                        if(coupon.equals("优惠卷--10")){
+//                            int i=1/0;
+//                        }
                         //4 交个线程池处理的下发业务逻辑，可以提出成一个方法
                         System.out.println(String.format("【%s】发送成功", coupon));
-                    }finally {
+                    } finally {
                         //5 发送一个少一个任务，计数减少一个
                         countDownLatch.countDown();
                     }
